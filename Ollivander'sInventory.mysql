@@ -1,0 +1,23 @@
+/*
+Enter your query here.
+*/
+SELECT 
+    id,
+    wp.age,
+    m.m_coins,
+    m.power
+FROM 
+    (
+        SELECT 
+            code, 
+            MIN(coins_needed) AS m_coins,
+            power
+        FROM Wands
+        GROUP BY code, power
+    ) AS m
+JOIN Wands as w
+    ON w.code = m.code AND w.power = m.power
+JOIN Wands_Property as wp
+    ON m.code = wp.code
+WHERE w.coins_needed = m.m_coins AND wp.is_evil = 0 
+ORDER BY m.power DESC, wp.age DESC;
