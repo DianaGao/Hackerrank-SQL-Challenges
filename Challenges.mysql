@@ -8,7 +8,7 @@ SELECT
 FROM Hackers AS h
 JOIN Challenges AS c
     ON h.hacker_id = c.hacker_id
-GROUP BY c.hacker_id
+GROUP BY c.hacker_id, h.name
 HAVING 
     challenges_created = (
                             SELECT MAX(COUNT(challenge_id))
