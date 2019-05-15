@@ -1,0 +1,31 @@
+/*
+Enter your query here.
+*/
+
+SELECT 
+    Start_Date,
+    MIN(End_Date)
+FROM 
+    (
+        SELECT Start_Date 
+        FROM Projects
+        WHERE Start_Date NOT IN (
+                                    SELECT End_Date 
+                                    FROM Projects)
+    ) AS s,
+    (
+        SELECT End_Date
+        FROM Projects
+        WHERE End_Date NOT IN(
+                                SELECT Start_Date
+                                FROM Projects)
+    ) AS e
+WHERE Start_Date < End_Date
+GROUP BY Start_Date
+ORDER BY DATEDIFF(MIN(End_Date), Start_Date), Start_Date;
+
+/*
+Note
+1. Find the consecutive dates by excluding the start dates from end dates & excluding the end dates from start dates
+2. Pair the dates of the projects by querying the pairs which start dates earlier than end dates & the end dates that closet to the start date
+*/
