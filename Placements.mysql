@@ -1,0 +1,18 @@
+/*
+Enter your query here.
+*/
+SELECT s.Name
+FROM Students AS s
+JOIN Packages AS sp
+    ON s.ID = sp.ID
+JOIN Friends AS f
+    ON f.ID = s.ID
+JOIN Packages AS fp
+    ON fp.ID = f.Friend_ID
+WHERE sp.Salary < fp.Salary
+ORDER BY fp.Salary;
+
+/*
+Note:
+1. Need to join the salary to the two different groups of IDs to query the right salary
+*/
