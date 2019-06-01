@@ -1,0 +1,24 @@
+/*
+Enter your query here.
+*/
+SELECT 
+    m.hacker_id,
+    h.name,
+    SUM(m.ms) AS s
+FROM 
+    (
+        SELECT 
+                hacker_id,
+                MAX(score) AS ms
+        FROM Submissions
+        GROUP BY hacker_id, challenge_id) AS m
+JOIN Hackers AS h
+    ON h.hacker_id = m.hacker_id
+GROUP BY h.name, m.hacker_id
+HAVING s > 0
+ORDER BY s DESC, m.hacker_id;
+
+/*Note:
+1.subquery the table with the pairs of the maxium score
+2. HAVING clause have to be infront of the ORDER BY clause
+*/
