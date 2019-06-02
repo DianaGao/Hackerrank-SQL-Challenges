@@ -1,0 +1,9 @@
+/*
+Enter your query here.
+*/
+SELECT 
+    N, 
+    IF(P IS NULL, 'Root', 
+       IF(BST.N IN (SELECT P FROM BST), 'Inner', 'Leaf'))
+FROM BST
+ORDER BY N;
