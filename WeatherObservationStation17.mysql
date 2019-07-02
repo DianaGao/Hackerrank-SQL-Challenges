@@ -1,0 +1,16 @@
+/*
+Enter your query here.
+*/
+
+SELECT ROUND(LONG_W, 4) 
+FROM STATION 
+WHERE LAT_N = (
+                SELECT MIN(LAT_N)
+                FROM STATION 
+                WHERE LAT_N > 38.7780);
+                
+*/
+Note: Two steps
+step 1.query the table with the constraints on LAT_N
+step 2. query the LONG_W that rounded to the 4 decimal from that table
+/*
