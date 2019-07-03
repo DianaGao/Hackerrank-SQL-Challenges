@@ -1,0 +1,12 @@
+/*
+Enter your query here.
+*/
+SELECT CEIL(
+        (AVG(SALARY) - AVG(REPLACE(SALARY, "0", "")))) AS diff
+FROM EMPLOYEES;
+
+/*
+NOTE:
+1. Write the function of the actual & miscalculation variables
+2. Round the result to next integer
+*/
